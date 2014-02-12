@@ -80,7 +80,7 @@ class PHP_PMD_ParserFactory
     {
         include_once 'PHP/PMD/Parser.php';
 
-        $pdepend = $this->createInstance();
+        $pdepend = $this->createInstance($phpmd);
         $pdepend = $this->init($pdepend, $phpmd);
 
         return new PHP_PMD_Parser($pdepend);
@@ -91,10 +91,15 @@ class PHP_PMD_ParserFactory
      *
      * @return PHP_Depend
      */
-    private function createInstance()
+    private function createInstance($phpmd)
     {
         $factory = new PHP_Depend_Util_Configuration_Factory();
-        return new PHP_Depend($factory->createDefault());
+        $config = $factory->createDefault();
+        $cacheDir = $phpmd->getCacheDir();
+        if ($cacheDir !== null) {
+            $config->cache->location = $cacheDir;
+        }
+        return new PHP_Depend($config);
     }
 
     /**

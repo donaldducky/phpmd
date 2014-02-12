@@ -83,6 +83,13 @@ class PHP_PMD
     private $ignorePatterns = array('.git', '.svn', 'CVS', '.bzr', '.hg', 'SCCS');
 
     /**
+     * Option for setting the pdepend cache directory.
+     *
+     * @var string
+     */
+    private $cacheDir = null;
+
+    /**
      * The input source file or directory.
      *
      * @var string
@@ -168,6 +175,26 @@ class PHP_PMD
             $this->ignorePatterns,
             $ignorePatterns
         );
+    }
+
+    /**
+     * Returns the cache directory to use for pdepend.
+     *
+     * @return string
+     */
+    public function getCacheDir()
+    {
+        return $this->cacheDir;
+    }
+
+    /**
+     * Sets the cache directory for pdepend to use.
+     *
+     * @return void
+     */
+    public function setCacheDir($cacheDir)
+    {
+        $this->cacheDir = $cacheDir;
     }
 
     /**

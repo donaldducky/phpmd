@@ -118,6 +118,13 @@ class PHP_PMD_TextUI_CommandLineOptions
     private $ignore = null;
 
     /**
+     * A string directory name for the pdepend cache folder.
+     *
+     * @var string
+     */
+    private $cacheDir = null;
+
+    /**
      * Should the shell show the current phpmd version?
      *
      * @var boolean
@@ -179,6 +186,10 @@ class PHP_PMD_TextUI_CommandLineOptions
 
             case '--exclude':
                 $this->ignore = array_shift($args);
+                break;
+
+            case '--cachedir':
+                $this->cacheDir = array_shift($args);
                 break;
 
             case '--version':
@@ -275,6 +286,14 @@ class PHP_PMD_TextUI_CommandLineOptions
     public function getIgnore()
     {
         return $this->ignore;
+    }
+
+    /**
+     *
+     */
+    public function getCacheDir()
+    {
+        return $this->cacheDir;
     }
 
     /**

@@ -122,6 +122,11 @@ class PHP_PMD_TextUI_Command
             $phpmd->setIgnorePattern(explode(',', $ignore));
         }
 
+        $cacheDir = $opts->getCacheDir();
+        if ($cacheDir !== null) {
+            $phpmd->setCacheDir($cacheDir);
+        }
+
         $phpmd->processFiles(
             $opts->getInputPath(),
             $opts->getRuleSets(),
